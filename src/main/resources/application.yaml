@@ -15,6 +15,16 @@ server:
     include-stacktrace: never
 
 spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    password: '12345'
+    username: root
+    url: jdbc:mysql://localhost:3306/mydb
   application:
     name: ecommerce-api-gateway
   cloud:
@@ -46,3 +56,7 @@ spring:
   #          uri: lb://auth-api
   #          predicates:
   #            - Path=/ibm/auth/**
+feign:
+  user-api:
+    name: user-api #EcomUserApi
+    url: http://localhost:8765/ecommerce/usuarios/
