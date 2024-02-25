@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
@@ -17,6 +18,7 @@ import static nelsonssoares.ecommercegateway.commons.constants.JpaConstants.TABL
 @Table(name = TABLE_NAME)
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class UsuarioAuth {
     @Id
     @GeneratedValue
