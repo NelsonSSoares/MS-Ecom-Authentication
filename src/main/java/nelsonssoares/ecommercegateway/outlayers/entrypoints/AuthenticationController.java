@@ -29,4 +29,9 @@ public class AuthenticationController {
         return usuarioService.registerUser(usuarioRegistrer);
     }
 
+    @GetMapping
+    public String get() {
+        return "Hello World";
+    }
+
 }

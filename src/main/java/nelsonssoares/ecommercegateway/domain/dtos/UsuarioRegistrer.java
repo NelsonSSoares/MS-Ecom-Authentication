@@ -14,6 +14,8 @@ public record UsuarioRegistrer(
         @NotEmpty
         String email,
         @NotEmpty
-        String password
+        String senha,
+        @NotEmpty
+        String role
 ) {
 }
