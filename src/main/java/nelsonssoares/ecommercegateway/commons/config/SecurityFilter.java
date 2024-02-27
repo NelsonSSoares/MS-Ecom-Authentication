@@ -36,10 +36,10 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     public String extractToken(HttpServletRequest request){
         var token = request.getHeader("Authorization");
-        if(token == null || token.isEmpty() || !token.startsWith("Bearer ")){
-            return null;
-        }
-        if(!token.split(" ")[0].equals("Bearer ")){
+//        if(token == null || token.isEmpty() || !token.startsWith("Bearer ")){
+//            return null;
+//        }
+       if(!token.split(" ")[0].equals("Bearer")){
             return null;
         }
 
