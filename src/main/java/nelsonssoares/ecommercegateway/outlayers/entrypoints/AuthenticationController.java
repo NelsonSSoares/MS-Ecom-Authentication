@@ -20,7 +20,6 @@ import static nelsonssoares.ecommercegateway.commons.constants.ControllerConstan
 @RequestMapping(value = API_BASE_URL, produces = API_PRODUCES)
 public class AuthenticationController {
 
-    private final ObjectMapper objectMapper;
     private final UsuarioService usuarioService;
     private final AuthenticationService authenticationService;
 
@@ -35,9 +34,9 @@ public class AuthenticationController {
     @ResponseStatus(HttpStatus.OK)
     public String login(@RequestBody @Valid LoginDto loginDto) {
 
+        return usuarioService.authenticateUser(loginDto);
 
-
-        return authenticationService.getToken(loginDto);
+//        return authenticationService.getToken(loginDto);
     }
 
     @GetMapping

@@ -3,6 +3,7 @@ package nelsonssoares.ecommercegateway.service.impl;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import lombok.RequiredArgsConstructor;
 import nelsonssoares.ecommercegateway.commons.constants.SecurityConstants;
 import nelsonssoares.ecommercegateway.domain.dtos.LoginDto;
@@ -47,6 +48,22 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         } catch (JWTCreationException e) {
             throw new RuntimeException("Erro ao criar token"+e.getMessage());
+        }
+
+    }
+
+    public String validateToken(String token){
+
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(SecurityConstants.SECRET);
+            return
+                    JWT.require(algorithm)
+                            .withIssuer("EcommerceGateway")
+                            .build()
+                            .verify(token)
+                            .getSubject();
+        }catch (JWTVerificationException e){
+            return "";
         }
 
     }
