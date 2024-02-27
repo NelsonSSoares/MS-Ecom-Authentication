@@ -2,9 +2,12 @@ package nelsonssoares.ecommercegateway.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import nelsonssoares.ecommercegateway.domain.dtos.LoginDto;
 import nelsonssoares.ecommercegateway.domain.dtos.UsuarioRegistrer;
 import nelsonssoares.ecommercegateway.outlayers.gateways.entities.UsuarioDTO;
 import nelsonssoares.ecommercegateway.service.UsuarioService;
+
+import nelsonssoares.ecommercegateway.usecases.AuthenticateUser;
 import nelsonssoares.ecommercegateway.usecases.RegisterUser;
 import nelsonssoares.ecommercegateway.usecases.VerifyExistsEmail;
 import org.springframework.http.HttpStatus;
@@ -18,6 +21,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final ObjectMapper objectMapper;
     private final RegisterUser registerUser;
     private final VerifyExistsEmail verifyExistsEmail;
+    private final AuthenticateUser authenticateUser;
 
     @Override
     public UsuarioDTO registerUser(UsuarioRegistrer usuarioRegistrer) {
@@ -35,4 +39,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         UsuarioDTO usuarioDTO = objectMapper.convertValue(usersaved, UsuarioDTO.class);
         return usuarioDTO;
     }
+
+    @Override
+    public String authenticateUser(LoginDto loginDto) {
+        return authenticateUser.authenticate(loginDto);
+    }
+
+
 }
