@@ -53,7 +53,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     public String validateToken(String token){
-
+        System.out.println("validateToken "+token);
         try {
             Algorithm algorithm = Algorithm.HMAC256(SecurityConstants.SECRET);
             return
@@ -63,7 +63,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                             .verify(token)
                             .getSubject();
         }catch (JWTVerificationException e){
-            return "";
+            return e.getMessage();
         }
 
     }
