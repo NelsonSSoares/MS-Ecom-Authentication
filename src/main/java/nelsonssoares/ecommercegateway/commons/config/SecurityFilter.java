@@ -23,8 +23,9 @@ public class SecurityFilter extends OncePerRequestFilter {
     private final GetUserByEmail getUserByEmail;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = extractToken(request);
 
+        String token = extractToken(request);
+        System.out.println("doFilter Token "+token);
         if(token != null){
            String login =  authenticationService.validateToken(token);
            UsuarioAuth usuarioAuth = getUserByEmail.getUserByEmail(login);
@@ -35,15 +36,20 @@ public class SecurityFilter extends OncePerRequestFilter {
     }
 
     public String extractToken(HttpServletRequest request){
+
         var token = request.getHeader("Authorization");
-//        if(token == null || token.isEmpty() || !token.startsWith("Bearer ")){
-//            return null;
-//        }
-       if(!token.split(" ")[0].equals("Bearer")){
+        System.out.println("extractToken "+token);
+        if(token == null || token.isEmpty() || !token.startsWith("Bearer ")){
+            return null;
+        }
+       if(!token.split(" ")[0].equals("Bearer ")){
             return null;
         }
 
-        return token.split(" ")[1];
+       String token1 = token.split(" ")[1];
+        System.out.println("extractToken1 "+token1);
+        return token1;
+        //return token.split(" ")[1];
     }
 
 }

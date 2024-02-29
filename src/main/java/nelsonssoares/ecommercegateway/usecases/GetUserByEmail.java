@@ -14,7 +14,9 @@ public class GetUserByEmail {
     private final UsuarioAuthRepository usuarioAuthRepository;
 
     public UsuarioAuth getUserByEmail(String email) {
+
         Optional<UsuarioAuth> usuarioAuth = Optional.ofNullable(usuarioAuthRepository.findByEmail(email));
+
         if(usuarioAuth.isPresent()){
             return usuarioAuth.get();
         }
