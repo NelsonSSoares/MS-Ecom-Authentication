@@ -59,4 +59,4 @@ spring:
 feign:
   user-api:
     name: user-api #EcomUserApi
-    url: http://localhost:8765/ecommerce/usuarios/
+    url: http://localhost:8765/ecommerce/usuarios
