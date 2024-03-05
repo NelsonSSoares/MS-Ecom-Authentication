@@ -29,13 +29,14 @@ public class RegisterUser {
         var password = passwordEncoder.encode(usuarioRegistrer.senha());
         usuarioAuth.setSenha(password);
 
-//        UsuarioDTO usuarioDTO = objectMapper.convertValue(usuarioRegistrer, UsuarioDTO.class);
-//
-//        UsuarioDTO usuarioRequest = usuarioGateway.usuarioPost(usuarioDTO);
-//        System.out.println(usuarioRequest);
-//        if (usuarioRequest == null) {
-//            return null;
-//        }
+        UsuarioDTO usuarioDTO = new UsuarioDTO(usuarioRegistrer.nome(),usuarioRegistrer.sobrenome(), usuarioRegistrer.cpf(), usuarioRegistrer.telefone(), usuarioRegistrer.email());
+
+        System.out.println(usuarioDTO);
+        UsuarioDTO usuarioRequest = usuarioGateway.usuarioPost(usuarioDTO);
+        System.out.println(usuarioRequest);
+        if (usuarioRequest == null) {
+            throw new RuntimeException("Erro ao salvar usuario, verifique as informações");
+        }
 
         usuarioAuthRepository.save(usuarioAuth);
 
