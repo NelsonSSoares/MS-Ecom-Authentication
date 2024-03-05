@@ -7,6 +7,7 @@ public class SecurityConstants {
 
     public static final String POST_LOGIN = "/ecommerce/auth/login";
 
+    public static final String POST_USER_API = "/ecommerce/usuarios";
     public static final String SECRET = "ecommerceapi";
 
 }

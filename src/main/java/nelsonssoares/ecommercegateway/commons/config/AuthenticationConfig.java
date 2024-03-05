@@ -33,6 +33,7 @@ public class AuthenticationConfig {
                         .requestMatchers(HttpMethod.GET, SecurityConstants.GET_METHOD ).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, SecurityConstants.POST_REGISTER).permitAll()
                         .requestMatchers(HttpMethod.POST, SecurityConstants.POST_LOGIN ).permitAll()
+                        .requestMatchers(HttpMethod.POST, SecurityConstants.POST_USER_API).permitAll()
                         .anyRequest().authenticated()
 
                 )
